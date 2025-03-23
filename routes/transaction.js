@@ -45,7 +45,7 @@ router.get('/', async (req, res) => {
             WHERE t.id = ?
         `;
 
-        const [rows] = await dbQuery(querySelect, [transaction_id]);
+        const [rows] = await dbQuery(querySelect, [id]);
 
         const transactions = rows?.map((row) => ({
             id: row.transaction_id,
@@ -91,7 +91,7 @@ router.get('/', async (req, res) => {
             WHERE transaction_id = ?
         `;
 
-        const row = await executeQuery(query, [transaction_id]);
+        const row = await executeQuery(query, [id]);
 
         const products = [];
         const customItems = [];
