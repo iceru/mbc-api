@@ -1,5 +1,5 @@
 const express = require('express');
-const { db } = require('../lib/db');
+const { dbQuery } = require('../lib/db');
 const { pagination } = require('../lib/pagination');
 // const { verifyToken } = require('../../middleware/verifyToken'); // Uncomment if using token verification
 
@@ -45,7 +45,7 @@ router.get('/', async (req, res) => {
         `;
 
         const params = session ? [session] : [];
-        const [rows] = await db.query(query, params);
+        const [rows] = await dbQuery(query, params);
 
         let transactions = rows?.map((row) => ({
             id: row.transaction_id,

@@ -1,5 +1,5 @@
 const express = require('express');
-const { db } = require('../lib/db');
+const { dbQuery } = require('../lib/db');
 const { executeQuery } = require('../lib/dbHelper');
 
 const router = express.Router();
@@ -45,7 +45,7 @@ router.get('/', async (req, res) => {
             WHERE t.id = ?
         `;
 
-        const [rows] = await db.query(querySelect, [transaction_id]);
+        const [rows] = await dbQuery(querySelect, [transaction_id]);
 
         const transactions = rows?.map((row) => ({
             id: row.transaction_id,
